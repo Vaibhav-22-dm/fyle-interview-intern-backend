@@ -51,7 +51,7 @@ class Assignment(db.Model):
             assertions.assert_valid(assignment.state == AssignmentStateEnum.DRAFT,
                                     'only assignment in draft state can be edited')
             assertions.assert_valid(assignment_new.content is not None, 'assignment content can\'t be null')
-            assertions.assert_true(assignment.student_id == auth_principal.student_id, 'This assignment belongs to some other student')
+            assertions.assert_true(assignment.student_id == assignment_new.student_id, 'This assignment belongs to some other student')
             assignment.content = assignment_new.content
         else:
             assertions.assert_valid(assignment_new.content is not None, 'assignment content can\'t be null')
